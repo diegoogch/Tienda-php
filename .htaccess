@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>  # Esto es consultar el modulo de apache que se llama rewrite_module
+
+# Activar rewrite
+RewriteEngine on
+ErrorDocument 404 http://localhost/master-php/proyecto-php-poo/error/index
+
+#Con esto no se va ha poder cargar un directorio cualquiera en la URL
+RewriteCond %{SCRIPT_FILENAME} !-d
+
+#Con esto no se va a poder cargar un fichero cualquiera en la URL
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+</IfModule>
